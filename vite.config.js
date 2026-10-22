@@ -11,7 +11,7 @@ export default defineConfig({
       manifest: {
         name: 'Interval Timer',
         short_name: 'Intervals',
-        description: 'A quiet interval timer with a gentle spoken-beat countdown.',
+        description: 'A free interval timer with no trackers and a gentle 3-2-1 beep.',
         theme_color: '#1E3B32',
         background_color: '#1E3B32',
         display: 'standalone',
@@ -22,9 +22,14 @@ export default defineConfig({
           { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
           { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
+        screenshots: [
+          { src: 'screenshot.png', sizes: '407x828', type: 'image/png', form_factor: 'narrow', label: 'Analog timer, ready to start' },
+        ],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Only crawlers and install prompts need these; keep them out of the offline cache.
+        globIgnores: ['og-image.png', 'screenshot.png'],
       },
     }),
   ],

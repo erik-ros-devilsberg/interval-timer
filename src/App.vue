@@ -5,6 +5,8 @@ import { useTimer } from './useTimer'
 import { formatMs } from './format'
 import AnalogClock from './components/AnalogClock.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
+import InfoPanel from './components/InfoPanel.vue'
+import ShareMenu from './components/ShareMenu.vue'
 
 const intervalMs = computed(() => settings.intervalSeconds * 1000)
 const intervalCount = computed(() => settings.intervals)
@@ -16,6 +18,8 @@ const {
 
 const settingsOpen = ref(false)
 const gear = ref(null)
+const infoOpen = ref(false)
+const infoBtn = ref(null)
 
 const time = computed(() => formatMs(intervalRemainingMs.value))
 // Countdown disc strength: builds from 0 at the interval start to 1 when the 3-2-1 begins.
@@ -68,9 +72,15 @@ function closeSettings() {
   gear.value?.focus()
 }
 
+function closeInfo() {
+  infoOpen.value = false
+  infoBtn.value?.focus()
+}
+
 function onKey(e) {
   if (e.key === 'Escape' && settingsOpen.value) return closeSettings()
-  if (settingsOpen.value || e.target.closest?.('button, input')) return
+  if (e.key === 'Escape' && infoOpen.value) return closeInfo()
+  if (settingsOpen.value || infoOpen.value || e.target.closest?.('button, input, a')) return
   if (e.code === 'Space') {
     e.preventDefault()
     toggle()
@@ -95,8 +105,23 @@ const statusLabel = computed(() => {
     :style="{ '--bg': settings.background, '--clock': settings.clock, '--flash': flashTone }"
   >
     <button
+      ref="infoBtn"
+      class="corner info"
+      type="button"
+      aria-label="About this timer"
+      :aria-expanded="infoOpen"
+      @click="infoOpen = true"
+    >
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M12 11v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        <circle cx="12" cy="7.8" r="1" fill="currentColor" />
+      </svg>
+    </button>
+
+    <button
       ref="gear"
-      class="gear"
+      class="corner gear"
       type="button"
       aria-label="Settings"
       :aria-expanded="settingsOpen"
@@ -153,7 +178,10 @@ const statusLabel = computed(() => {
       >Reset</button>
     </div>
 
+    <ShareMenu />
+
     <SettingsPanel v-if="settingsOpen" :timer-active="active" @close="closeSettings" />
+    <InfoPanel :open="infoOpen" @close="closeInfo" />
   </main>
 </template>
 
@@ -171,10 +199,9 @@ const statusLabel = computed(() => {
   transition: background-color 300ms ease, color 300ms ease;
 }
 
-.gear {
+.corner {
   position: fixed;
   top: max(12px, env(safe-area-inset-top));
-  right: max(12px, env(safe-area-inset-right));
   width: 48px;
   height: 48px;
   display: grid;
@@ -188,7 +215,10 @@ const statusLabel = computed(() => {
   transition: opacity 150ms ease, transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.gear:hover { opacity: 1; }
+.gear { right: max(12px, env(safe-area-inset-right)); }
+.info { left: max(12px, env(safe-area-inset-left)); }
+
+.corner:hover { opacity: 1; }
 .gear[aria-expanded='true'] { transform: rotate(60deg); }
 
 .face {

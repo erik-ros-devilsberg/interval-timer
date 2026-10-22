@@ -1,13 +1,18 @@
 # Interval Timer
 
-A minimalist interval timer that runs in the browser and installs as an app.
+A free, minimalist interval timer that runs in the browser and installs as an app. No ads, no accounts, no trackers.
+
+![Interval Timer](public/og-image.png)
 
 **Use it:** [interval-timer.devilsberg.com](https://interval-timer.devilsberg.com)
 
 By default it runs five 1-minute intervals. A soft 3-2-1 beep counts you in before the start and before every new interval, so you can keep your eyes off the screen.
 
+Good for HIIT, Tabata, Pomodoro, plank holds, or flipping steaks evenly.
+
 ## Features
 
+- Free and trackerless: no analytics, no cookies, no external requests
 - Gentle audible 3-2-1 countdown before starting and before each interval change, with a closing chime at the end
 - Digital clock, or an analog clock whose disc shrinks back to twelve like a kitchen timer
 - Settings via the gear icon (top right):
@@ -27,7 +32,7 @@ By default it runs five 1-minute intervals. A soft 3-2-1 beep counts you in befo
 | --- | --- |
 | `Space` | Start / pause |
 | `R` | Reset |
-| `Esc` | Close settings |
+| `Esc` | Close settings or info |
 
 ## Development
 
@@ -39,6 +44,7 @@ npm run dev       # start dev server
 npm run build     # production build in dist/
 npm run preview   # serve the production build locally
 npm run icons     # regenerate PWA icons from public/favicon.svg
+npm run og        # regenerate the link preview image (needs Chromium)
 ```
 
 ### Project structure
@@ -53,6 +59,10 @@ src/
   components/
     AnalogClock.vue           shrinking-disc clock face
     SettingsPanel.vue         settings overlay
+    InfoPanel.vue             about overlay (also the indexable page text)
+    ShareMenu.vue             copy link / email share
+scripts/
+  og-image.html               source of public/og-image.png
 ```
 
 ## Self-hosting
@@ -71,4 +81,4 @@ If you enjoy the timer, you can support it on [Ko-fi](https://ko-fi.com/devilsbe
 
 ## License
 
-[MIT](LICENSE) © Erik Ros
+[MIT](LICENSE) © Erik Ros · Made by [Devilsberg](https://devilsberg.com)
