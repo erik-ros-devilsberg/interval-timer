@@ -1,0 +1,24 @@
+{
+  "name": "interval-timer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://interval-timer.devilsberg.com",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "icons": "pwa-assets-generator"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "^2.0.0",
+    "@vitejs/plugin-vue": "latest",
+    "vite": "latest",
+    "vite-plugin-pwa": "^2.0.0"
+  }
+}

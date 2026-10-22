@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1E3B32"/>
+  <g stroke="#D3DBC8" stroke-linecap="round">
+    <line x1="256" y1="74" x2="256" y2="52" stroke-width="12"/>
+    <line x1="350" y1="93.2" x2="358" y2="79.3" stroke-width="8"/>
+    <line x1="418.8" y1="162" x2="432.7" y2="154" stroke-width="8"/>
+    <line x1="438" y1="256" x2="460" y2="256" stroke-width="12"/>
+    <line x1="418.8" y1="350" x2="432.7" y2="358" stroke-width="8"/>
+    <line x1="350" y1="418.8" x2="358" y2="432.7" stroke-width="8"/>
+    <line x1="256" y1="438" x2="256" y2="460" stroke-width="12"/>
+    <line x1="162" y1="418.8" x2="154" y2="432.7" stroke-width="8"/>
+    <line x1="93.2" y1="350" x2="79.3" y2="358" stroke-width="8"/>
+    <line x1="74" y1="256" x2="52" y2="256" stroke-width="12"/>
+    <line x1="93.2" y1="162" x2="79.3" y2="154" stroke-width="8"/>
+    <line x1="162" y1="93.2" x2="154" y2="79.3" stroke-width="8"/>
+  </g>
+  <path d="M256 256 L256 86 A170 170 0 1 0 426 256 Z" fill="#D3DBC8"/>
+  <circle cx="256" cy="256" r="14" fill="#D3DBC8"/>
+</svg>
